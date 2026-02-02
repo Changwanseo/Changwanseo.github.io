@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(git -C \"C:\\\\Github\\\\Changwanseo.github.io\" log --oneline -10)",
+      "Bash(git -C \"C:\\\\Github\\\\Changwanseo.github.io\" remote:*)",
+      "Bash(git -C \"C:\\\\Github\\\\Changwanseo.github.io\" log:*)",
+      "Bash(tree:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)"
+    ]
+  }
+}

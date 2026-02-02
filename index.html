@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>창완 &hearts; 수민 결혼합니다</title>
+    <meta name="description" content="서창완, 조수민 결혼식에 초대합니다. 2026년 11월 21일 토요일 오후 3시, 서울대학교 호암교수회관">
+    <meta property="og:title" content="창완 ♥ 수민 결혼합니다">
+    <meta property="og:description" content="2026년 11월 21일 토요일 오후 3시 · 서울대학교 호암교수회관">
+    <meta property="og:image" content="wedding_invitation_1.png">
+    <meta property="og:type" content="website">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Batang:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Gowun Batang', 'Nanum Myeongjo', serif;
+            background-color: #f7f5f0;
+            color: #4a4a4a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .invitation {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #faf8f4;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 30px 10px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Decorative divider */
+        .divider {
+            text-align: center;
+            padding: 30px 0;
+            color: #c9b99a;
+            font-size: 14px;
+            letter-spacing: 8px;
+        }
+
+        .divider-line {
+            display: block;
+            width: 1px;
+            height: 40px;
+            background-color: #d4c5a9;
+            margin: 0 auto;
+        }
+
+        /* Greeting Section */
+        .greeting {
+            text-align: center;
+            padding: 20px 40px 40px;
+            line-height: 2.2;
+            font-size: 15px;
+            color: #5a5a5a;
+            word-break: keep-all;
+        }
+
+        /* Names Section */
+        .names {
+            text-align: center;
+            padding: 30px 30px;
+            background-color: rgba(201, 185, 154, 0.06);
+        }
+
+        .names-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 12px 0;
+            font-size: 15px;
+            color: #6a6a6a;
+        }
+
+        .names-row .parents {
+            letter-spacing: 1px;
+        }
+
+        .names-row .role {
+            margin: 0 6px;
+            font-size: 14px;
+        }
+
+        .names-row .name {
+            font-family: 'Nanum Myeongjo', serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: #4a4a4a;
+            margin-left: 4px;
+        }
+
+        .names-dot {
+            margin: 0 4px;
+            color: #c9b99a;
+        }
+
+        /* Date Section */
+        .date-section {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .date-main {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #4a4a4a;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .date-detail {
+            font-size: 15px;
+            color: #7a7a7a;
+            margin-bottom: 6px;
+        }
+
+        .venue {
+            font-size: 16px;
+            color: #5a5a5a;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        /* Calendar Section */
+        .calendar {
+            padding: 10px 30px 30px;
+            text-align: center;
+        }
+
+        .calendar table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .calendar-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #4a4a4a;
+            margin-bottom: 16px;
+            letter-spacing: 4px;
+        }
+
+        .calendar th {
+            padding: 8px 10px;
+            font-weight: 400;
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .calendar th:first-child {
+            color: #d4837c;
+        }
+
+        .calendar td {
+            padding: 7px 10px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .calendar td:first-child {
+            color: #d4837c;
+        }
+
+        .calendar .today {
+            background-color: #c9b99a;
+            color: #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 30px 30px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .map-image {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 16px;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid #e8e2d6;
+        }
+
+        .map-info {
+            font-size: 14px;
+            color: #7a7a7a;
+            line-height: 1.8;
+            margin-top: 12px;
+        }
+
+        .map-note {
+            font-size: 12px;
+            color: #b0a080;
+            margin-top: 10px;
+        }
+
+        .map-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .map-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #d4c5a9;
+            border-radius: 24px;
+            font-family: 'Gowun Batang', serif;
+            font-size: 13px;
+            color: #6a6a6a;
+            text-decoration: none;
+            background: #fff;
+            transition: all 0.2s;
+        }
+
+        .map-btn:hover {
+            background-color: #c9b99a;
+            color: #fff;
+            border-color: #c9b99a;
+        }
+
+        /* Transport Info */
+        .transport {
+            padding: 20px 30px 40px;
+            text-align: left;
+        }
+
+        .transport-item {
+            margin-bottom: 16px;
+        }
+
+        .transport-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #6a6a6a;
+            margin-bottom: 4px;
+        }
+
+        .transport-desc {
+            font-size: 13px;
+            color: #8a8a8a;
+            line-height: 1.7;
+        }
+
+        /* Account Section */
+        .account-section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .account-toggle {
+            display: inline-block;
+            padding: 12px 32px;
+            border: 1px solid #d4c5a9;
+            border-radius: 24px;
+            font-family: 'Gowun Batang', serif;
+            font-size: 14px;
+            color: #6a6a6a;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .account-toggle:hover {
+            background-color: #c9b99a;
+            color: #fff;
+        }
+
+        .account-details {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .account-details.open {
+            display: block;
+        }
+
+        .account-group {
+            margin-bottom: 20px;
+        }
+
+        .account-group-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6a6a6a;
+            margin-bottom: 10px;
+        }
+
+        .account-info {
+            font-size: 13px;
+            color: #8a8a8a;
+            line-height: 2;
+        }
+
+        .copy-btn {
+            display: inline-block;
+            padding: 3px 10px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 11px;
+            color: #999;
+            background: #fff;
+            cursor: pointer;
+            margin-left: 6px;
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .copy-btn:hover {
+            background-color: #f0ebe0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 30px 60px;
+            color: #c9b99a;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .footer .hearts {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(74, 74, 74, 0.9);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 13px;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation">
+
+        <!-- Hero -->
+        <section class="hero fade-in">
+            <img src="wedding_invitation_1.png" alt="Changwan and Sumin - Welcome to our new beginning" class="hero-image">
+        </section>
+
+        <!-- Divider -->
+        <div class="divider fade-in">
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Greeting -->
+        <section class="greeting fade-in">
+            평생을 같이하고 싶은 사람을 만났습니다.<br>
+            저희 두 사람<br>
+            이제 사랑으로 하나 되어<br>
+            한 길을 걷고자 합니다.<br><br>
+            가까이서 저희의 출발을 지켜봐 주시고<br>
+            축복해 주신다면<br>
+            더없는 기쁨으로 간직하겠습니다.
+        </section>
+
+        <!-- Divider -->
+        <div class="divider fade-in">
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Names -->
+        <section class="names fade-in">
+            <div class="names-row">
+                <span class="parents">서동고</span>
+                <span class="names-dot">&#183;</span>
+                <span class="parents">이호영</span>
+                <span class="role">의 아들</span>
+                <span class="name">창완</span>
+            </div>
+            <div class="names-row">
+                <span class="parents">조명호</span>
+                <span class="names-dot">&#183;</span>
+                <span class="parents">최명연</span>
+                <span class="role">의 딸</span>
+                <span class="name">수민</span>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="divider fade-in">
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Date -->
+        <section class="date-section fade-in">
+            <div class="date-main">2026. 11. 21</div>
+            <div class="date-detail">토요일 오후 3시</div>
+            <div class="venue">서울대학교 호암교수회관</div>
+        </section>
+
+        <!-- Calendar -->
+        <section class="calendar fade-in">
+            <div class="calendar-title">NOVEMBER 2026</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>일</th>
+                        <th>월</th>
+                        <th>화</th>
+                        <th>수</th>
+                        <th>목</th>
+                        <th>금</th>
+                        <th>토</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                    </tr>
+                    <tr>
+                        <td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
+                    </tr>
+                    <tr>
+                        <td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td><span class="today">21</span></td>
+                    </tr>
+                    <tr>
+                        <td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
+                    </tr>
+                    <tr>
+                        <td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Divider -->
+        <div class="divider fade-in">
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Map / Location -->
+        <section class="map-section fade-in">
+            <div class="section-title">오시는 길</div>
+            <img src="wedding_invitation_2.png" alt="오시는 길 약도" class="map-image">
+            <div class="map-info">
+                서울특별시 관악구 관악로 1<br>
+                서울대학교 호암교수회관
+            </div>
+            <div class="map-note">* "교수회관" 이 아닌 "호암교수회관"입니다</div>
+            <div class="map-buttons">
+                <a class="map-btn" href="https://map.naver.com/v5/search/서울대학교 호암교수회관" target="_blank" rel="noopener">네이버 지도</a>
+                <a class="map-btn" href="https://map.kakao.com/?q=서울대학교 호암교수회관" target="_blank" rel="noopener">카카오맵</a>
+            </div>
+        </section>
+
+        <!-- Transport -->
+        <section class="transport fade-in">
+            <div class="transport-item">
+                <div class="transport-label">지하철</div>
+                <div class="transport-desc">2호선 낙성대역 4번 출구 → 관악02 마을버스 또는 도보 15분</div>
+            </div>
+            <div class="transport-item">
+                <div class="transport-label">주차</div>
+                <div class="transport-desc">호암교수회관 내 주차 가능</div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="divider fade-in">
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Account / 마음 전하실 곳 -->
+        <section class="account-section fade-in">
+            <div class="section-title">마음 전하실 곳</div>
+            <div>
+                <button class="account-toggle" onclick="toggleAccount('groom')">신랑측 계좌번호</button>
+                <button class="account-toggle" onclick="toggleAccount('bride')">신부측 계좌번호</button>
+            </div>
+
+            <div id="groom-account" class="account-details">
+                <div class="account-group">
+                    <div class="account-group-title">신랑측</div>
+                    <div class="account-info">
+                        <!-- 계좌 정보를 아래에 입력해주세요 -->
+                        계좌 정보 준비 중입니다
+                    </div>
+                </div>
+            </div>
+
+            <div id="bride-account" class="account-details">
+                <div class="account-group">
+                    <div class="account-group-title">신부측</div>
+                    <div class="account-info">
+                        <!-- 계좌 정보를 아래에 입력해주세요 -->
+                        계좌 정보 준비 중입니다
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer fade-in">
+            <div class="hearts">&hearts;</div>
+            Changwan &amp; Sumin
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Scroll fade-in animation
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            elements.forEach(function(el) {
+                observer.observe(el);
+            });
+        }
+
+        // Toggle account details
+        function toggleAccount(type) {
+            var el = document.getElementById(type + '-account');
+            el.classList.toggle('open');
+        }
+
+        // Copy to clipboard
+        function copyAccount(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                showToast('계좌번호가 복사되었습니다');
+            });
+        }
+
+        // Toast notification
+        function showToast(message) {
+            var toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', handleScrollAnimation);
+    </script>
+</body>
+</html>
