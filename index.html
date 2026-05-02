@@ -374,6 +374,95 @@
             transform: translateY(0);
         }
 
+        /* Gallery */
+        .gallery-section {
+            padding: 20px 0 30px;
+            text-align: center;
+        }
+
+        .gallery-viewport {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+
+        .gallery-slide {
+            flex: 0 0 100%;
+            padding: 0 30px;
+            box-sizing: border-box;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid #e8e2d6;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            background-color: #efeae0;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.75);
+            color: #6a6a6a;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.2s;
+            z-index: 2;
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(201, 185, 154, 0.9);
+            color: #fff;
+        }
+
+        .gallery-arrow.prev { left: 36px; }
+        .gallery-arrow.next { right: 36px; }
+
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .gallery-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #e1d8c5;
+            transition: background-color 0.2s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+        }
+
+        .gallery-dot.active {
+            background-color: #c9b99a;
+            transform: scale(1.3);
+        }
+
         /* Toast */
         .toast {
             position: fixed;
@@ -419,6 +508,21 @@
             가까이서 저희의 출발을 지켜봐 주시고<br>
             축복해 주신다면<br>
             더없는 기쁨으로 간직하겠습니다.
+        </section>
+
+        <!-- Divider -->
+        <div class="divider fade-in">
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Gallery -->
+        <section class="gallery-section fade-in">
+            <div class="gallery-viewport">
+                <div class="gallery-track" id="galleryTrack"></div>
+                <button class="gallery-arrow prev" id="galleryPrev" aria-label="이전 사진">&#8249;</button>
+                <button class="gallery-arrow next" id="galleryNext" aria-label="다음 사진">&#8250;</button>
+            </div>
+            <div class="gallery-dots" id="galleryDots"></div>
         </section>
 
         <!-- Divider -->
@@ -607,8 +711,135 @@
             }, 2000);
         }
 
+        // List of candidate gallery photos. Files that don't exist on disk
+        // are automatically skipped — just delete a file and its slide
+        // disappears. Add a new filename here to include a new photo.
+        // Optional 'position' sets object-position for the cropped frame.
+        var GALLERY_PHOTOS = [
+            { file: 'WNY00019.jpg' },
+            { file: 'WNY00059.jpg' },
+            { file: 'WNY00088.jpg' },
+            { file: 'WNY00152.jpg' },
+            { file: 'WNY00666.jpg' },
+            { file: 'WNY00857.jpg' },
+            { file: 'WNY00938.jpg' },
+            { file: 'WNY01005.jpg' },
+            { file: 'WNY01062.jpg' },
+            { file: 'WNY01082jpg.jpg', position: 'right center' },
+            { file: 'WNY01145.jpg' }
+        ];
+
+        // Probe each candidate; resolve with the entry if image loads, null if not.
+        function probePhoto(entry) {
+            return new Promise(function(resolve) {
+                var img = new Image();
+                img.onload = function() { resolve(entry); };
+                img.onerror = function() { resolve(null); };
+                img.src = 'gallery/' + entry.file;
+            });
+        }
+
+        // Gallery carousel (swipe + dots + arrows + autoplay)
+        function initGallery(available) {
+            var track = document.getElementById('galleryTrack');
+            var dotsContainer = document.getElementById('galleryDots');
+            var prevBtn = document.getElementById('galleryPrev');
+            var nextBtn = document.getElementById('galleryNext');
+            if (!track || !dotsContainer) return;
+
+            // Build slides from available photos
+            track.innerHTML = '';
+            for (var k = 0; k < available.length; k++) {
+                var entry = available[k];
+                var slide = document.createElement('div');
+                slide.className = 'gallery-slide';
+                var img = document.createElement('img');
+                img.src = 'gallery/' + entry.file;
+                img.alt = '';
+                img.loading = k === 0 ? 'eager' : 'lazy';
+                img.decoding = 'async';
+                if (entry.position) img.style.objectPosition = entry.position;
+                slide.appendChild(img);
+                track.appendChild(slide);
+            }
+
+            var slides = track.querySelectorAll('.gallery-slide');
+            var total = slides.length;
+            if (total === 0) return;
+            var index = 0;
+            var autoplayTimer = null;
+            var AUTOPLAY_MS = 5000;
+
+            for (var i = 0; i < total; i++) {
+                var dot = document.createElement('button');
+                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', '사진 ' + (i + 1));
+                (function(i) {
+                    dot.addEventListener('click', function() { goTo(i); restartAutoplay(); });
+                })(i);
+                dotsContainer.appendChild(dot);
+            }
+            var dots = dotsContainer.querySelectorAll('.gallery-dot');
+
+            function goTo(i) {
+                index = (i + total) % total;
+                track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                for (var j = 0; j < dots.length; j++) {
+                    dots[j].classList.toggle('active', j === index);
+                }
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+                autoplayTimer = setInterval(function() { goTo(index + 1); }, AUTOPLAY_MS);
+            }
+            function stopAutoplay() {
+                if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
+            }
+            function restartAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', function() { goTo(index - 1); restartAutoplay(); });
+            if (nextBtn) nextBtn.addEventListener('click', function() { goTo(index + 1); restartAutoplay(); });
+
+            var startX = 0, deltaX = 0, dragging = false;
+            track.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                deltaX = 0;
+                dragging = true;
+                stopAutoplay();
+            }, { passive: true });
+            track.addEventListener('touchmove', function(e) {
+                if (!dragging) return;
+                deltaX = e.touches[0].clientX - startX;
+            }, { passive: true });
+            track.addEventListener('touchend', function() {
+                if (!dragging) return;
+                dragging = false;
+                if (Math.abs(deltaX) > 40) {
+                    goTo(index + (deltaX < 0 ? 1 : -1));
+                }
+                startAutoplay();
+            });
+
+            // Pause autoplay when tab hidden, resume when visible
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) stopAutoplay(); else startAutoplay();
+            });
+
+            startAutoplay();
+        }
+
         // Initialize
-        document.addEventListener('DOMContentLoaded', handleScrollAnimation);
+        document.addEventListener('DOMContentLoaded', function() {
+            handleScrollAnimation();
+            Promise.all(GALLERY_PHOTOS.map(probePhoto)).then(function(results) {
+                var available = results.filter(function(r) { return r !== null; });
+                initGallery(available);
+            });
+        });
     </script>
 </body>
 </html>

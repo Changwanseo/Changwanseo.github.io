@@ -7,7 +7,10 @@
       "Bash(git -C \"C:\\\\Github\\\\Changwanseo.github.io\" log:*)",
       "Bash(tree:*)",
       "Bash(python:*)",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash(python3:*)",
+      "Bash(start \"\" \"http://localhost:8000\")",
+      "Bash(magick -version)"
     ]
   }
 }
