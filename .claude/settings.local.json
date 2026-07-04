@@ -10,7 +10,8 @@
       "Bash(pip install:*)",
       "Bash(python3:*)",
       "Bash(start \"\" \"http://localhost:8000\")",
-      "Bash(magick -version)"
+      "Bash(magick -version)",
+      "Bash(awk '{print $5, $9}')"
     ]
   }
 }
