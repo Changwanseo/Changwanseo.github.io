@@ -18,6 +18,21 @@
             box-sizing: border-box;
         }
 
+        /* Prevent photos from being enlarged, dragged, or long-press saved */
+        img {
+            -webkit-touch-callout: none;      /* no iOS long-press "Save/Copy" menu */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            user-drag: none;
+            touch-action: pan-x pan-y;        /* allow scroll, block pinch/double-tap zoom */
+            pointer-events: none;             /* re-enabled per-element where needed */
+        }
+
         body {
             font-family: 'Gowun Batang', 'Nanum Myeongjo', serif;
             background-color: #f7f5f0;
@@ -348,6 +363,222 @@
             background-color: #f0ebe0;
         }
 
+        /* Guestbook 방명록 */
+        .guestbook-section {
+            padding: 30px 30px 10px;
+            text-align: center;
+        }
+
+        .guestbook-sub {
+            font-size: 13px;
+            color: #9a8f7a;
+            margin: -8px 0 22px;
+            letter-spacing: 1px;
+        }
+
+        .guestbook-form {
+            max-width: 380px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .gb-field-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gb-input,
+        .gb-textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #e2dac9;
+            border-radius: 10px;
+            background: #fff;
+            font-family: 'Gowun Batang', serif;
+            font-size: 14px;
+            color: #4a4a4a;
+            box-sizing: border-box;
+        }
+
+        .gb-field-row .gb-input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .gb-input:focus,
+        .gb-textarea:focus {
+            outline: none;
+            border-color: #c9b99a;
+        }
+
+        .gb-textarea {
+            resize: none;
+            line-height: 1.7;
+        }
+
+        .gb-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 2px 14px;
+        }
+
+        .gb-hint { font-size: 11px; color: #b8ab92; }
+        .gb-counter { font-size: 12px; color: #9a8f7a; }
+        .gb-counter.over { color: #c07a5a; }
+
+        .gb-submit {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 24px;
+            background: #c9b99a;
+            color: #fff;
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .gb-submit:hover { background: #bfae8c; }
+        .gb-submit:disabled { opacity: 0.5; cursor: default; }
+
+        .gb-status {
+            font-size: 12px;
+            color: #9a8f7a;
+            text-align: center;
+            margin-top: 12px;
+            min-height: 16px;
+        }
+
+        /* Ribbon toggle */
+        .gb-ribbon {
+            position: relative;
+            display: inline-block;
+            margin: 26px auto 4px;
+            padding: 11px 42px;
+            background: #c9b99a;
+            color: #fff;
+            border: none;
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0 50%);
+            transition: background-color 0.2s;
+        }
+
+        .gb-ribbon:hover { background: #bfae8c; }
+        .gb-ribbon-count { opacity: 0.8; font-size: 13px; }
+
+        /* Collapsible list */
+        .gb-list {
+            max-width: 380px;
+            margin: 0 auto;
+            text-align: left;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.4s ease;
+        }
+
+        .gb-list.open {
+            max-height: 30000px;
+            opacity: 1;
+            margin-top: 18px;
+        }
+
+        .gb-empty {
+            font-size: 13px;
+            color: #b0a58f;
+            padding: 16px 0;
+            text-align: center;
+        }
+
+        .gb-entry {
+            background: #fff;
+            border: 1px solid #ece5d6;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+
+        .gb-entry-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 7px;
+        }
+
+        .gb-entry-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #5a5344;
+        }
+
+        .gb-entry-date { font-size: 11px; color: #b6ab93; }
+
+        .gb-entry-msg {
+            font-size: 13.5px;
+            color: #5a5a5a;
+            line-height: 1.75;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .gb-entry-actions {
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .gb-entry-del {
+            background: none;
+            border: none;
+            font-size: 11px;
+            color: #b6ab93;
+            cursor: pointer;
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .gb-entry-del:hover { color: #8a7f68; text-decoration: underline; }
+
+        .gb-del-box {
+            display: none;
+            margin-top: 8px;
+            gap: 6px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .gb-del-box.open { display: flex; }
+
+        .gb-del-input {
+            padding: 6px 10px;
+            border: 1px solid #e2dac9;
+            border-radius: 8px;
+            font-size: 12px;
+            width: 110px;
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .gb-del-input:focus { outline: none; border-color: #c9b99a; }
+
+        .gb-del-confirm {
+            padding: 6px 12px;
+            border: 1px solid #d4c5a9;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 12px;
+            color: #6a6a6a;
+            cursor: pointer;
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .gb-del-confirm:hover { background: #c9b99a; color: #fff; }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -491,7 +722,7 @@
 
         <!-- Hero -->
         <section class="hero fade-in">
-            <img src="wedding_invitation_1.png" alt="Changwan and Sumin - Welcome to our new beginning" class="hero-image">
+            <img src="wedding_invitation_1.png" alt="Changwan and Sumin - Welcome to our new beginning" class="hero-image" draggable="false">
         </section>
 
         <!-- Divider -->
@@ -603,7 +834,7 @@
         <!-- Map / Location -->
         <section class="map-section fade-in">
             <div class="section-title">오시는 길</div>
-            <img src="wedding_invitation_2.png" alt="오시는 길 약도" class="map-image">
+            <img src="wedding_invitation_2.png" alt="오시는 길 약도" class="map-image" draggable="false">
             <div class="map-info">
                 서울특별시 관악구 관악로 1<br>
                 서울대학교 호암교수회관
@@ -642,23 +873,57 @@
 
             <div id="groom-account" class="account-details">
                 <div class="account-group">
-                    <div class="account-group-title">신랑측</div>
+                    <div class="account-group-title">신랑 서창완</div>
                     <div class="account-info">
-                        <!-- 계좌 정보를 아래에 입력해주세요 -->
-                        계좌 정보 준비 중입니다
+                        농협 302-1162-8956-31
+                        <button class="copy-btn" onclick="copyAccount('302-1162-8956-31')">복사</button>
                     </div>
                 </div>
             </div>
 
             <div id="bride-account" class="account-details">
                 <div class="account-group">
-                    <div class="account-group-title">신부측</div>
+                    <div class="account-group-title">신부 조수민</div>
                     <div class="account-info">
-                        <!-- 계좌 정보를 아래에 입력해주세요 -->
-                        계좌 정보 준비 중입니다
+                        농협 1303-0101-4218
+                        <button class="copy-btn" onclick="copyAccount('1303-0101-4218')">복사</button>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="divider fade-in">
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Guestbook 방명록 -->
+        <section class="guestbook-section fade-in">
+            <div class="section-title">방명록</div>
+            <p class="guestbook-sub">축하의 마음을 남겨주세요</p>
+
+            <form class="guestbook-form" id="guestbookForm" autocomplete="off">
+                <div class="gb-field-row">
+                    <input type="text" id="gbName" class="gb-input" placeholder="이름" maxlength="20" required>
+                    <input type="password" id="gbPassword" class="gb-input" placeholder="비밀번호" maxlength="20" required>
+                </div>
+                <textarea id="gbMessage" class="gb-textarea" placeholder="축하 메시지를 남겨주세요 (한글 100자 이내)" rows="3" required></textarea>
+                <div class="gb-meta">
+                    <span class="gb-hint">이모지·이미지는 등록되지 않습니다</span>
+                    <span class="gb-counter" id="gbCounter"><span id="gbCount">0</span>/100</span>
+                </div>
+                <button type="submit" class="gb-submit" id="gbSubmit">방명록 남기기</button>
+            </form>
+
+            <div class="gb-status" id="gbStatus"></div>
+
+            <!-- Ribbon toggle -->
+            <button class="gb-ribbon" id="gbRibbon" type="button" aria-expanded="false">
+                <span class="gb-ribbon-label">방명록 펼쳐보기</span>
+                <span class="gb-ribbon-count" id="gbRibbonCount"></span>
+            </button>
+
+            <div class="gb-list" id="gbList"></div>
         </section>
 
         <!-- Footer -->
@@ -715,25 +980,29 @@
         // are automatically skipped — just delete a file and its slide
         // disappears. Add a new filename here to include a new photo.
         // Optional 'position' sets object-position for the cropped frame.
+        // 최근에 등록한 사진이 먼저 보이도록 역순 정렬.
         var GALLERY_PHOTOS = [
-            { file: 'WNY00019.jpg' },
-            { file: 'WNY00059.jpg' },
-            { file: 'WNY00088.jpg' },
-            { file: 'WNY00152.jpg' },
-            { file: 'WNY00666.jpg' },
-            { file: 'WNY00857.jpg' },
-            { file: 'WNY00938.jpg' },
-            { file: 'WNY01005.jpg' },
-            { file: 'WNY01062.jpg' },
-            { file: 'WNY01082jpg.jpg', position: 'right center' },
-            { file: 'WNY01145.jpg' },
-            { file: 'DSC03662.jpg' },
-            { file: 'DSC03784.jpg' },
-            { file: 'DSC03807.jpg' },
-            { file: 'DSC03813.jpg' },
-            { file: 'DSC04098.jpg' },
+            { file: 'DSC04165re.jpg' },
+            { file: 'DSC04061re.jpg' },
+            { file: 'DSC03711re.jpg' },
+            { file: 'DSC04113.jpg' },
             { file: 'DSC04100.jpg' },
-            { file: 'DSC04113.jpg' }
+            { file: 'DSC04098.jpg' },
+            { file: 'DSC03813.jpg' },
+            { file: 'DSC03807.jpg' },
+            { file: 'DSC03784.jpg' },
+            { file: 'DSC03662.jpg' },
+            { file: 'WNY01145.jpg' },
+            { file: 'WNY01082jpg.jpg', position: 'right center' },
+            { file: 'WNY01062.jpg' },
+            { file: 'WNY01005.jpg' },
+            { file: 'WNY00938.jpg' },
+            { file: 'WNY00857.jpg' },
+            { file: 'WNY00666.jpg' },
+            { file: 'WNY00152.jpg' },
+            { file: 'WNY00088.jpg' },
+            { file: 'WNY00059.jpg' },
+            { file: 'WNY00019.jpg' }
         ];
 
         // Probe each candidate; resolve with the entry if image loads, null if not.
@@ -763,6 +1032,7 @@
                 var img = document.createElement('img');
                 img.src = 'gallery/' + entry.file;
                 img.alt = '';
+                img.draggable = false;
                 img.loading = k === 0 ? 'eager' : 'lazy';
                 img.decoding = 'async';
                 if (entry.position) img.style.objectPosition = entry.position;
@@ -839,6 +1109,282 @@
             startAutoplay();
         }
 
+        // Anti-zoom: iOS Safari ignores the viewport user-scalable=no, so block
+        // pinch-gesture zoom and double-tap zoom manually.
+        (function preventPhotoSizeUp() {
+            // Block iOS pinch-zoom gestures.
+            ['gesturestart', 'gesturechange', 'gestureend'].forEach(function(evt) {
+                document.addEventListener(evt, function(e) { e.preventDefault(); }, { passive: false });
+            });
+            // Block double-tap-to-zoom (fires as two quick taps), but leave
+            // interactive controls (arrows, dots) responsive.
+            var lastTouch = 0;
+            document.addEventListener('touchend', function(e) {
+                var t = e.target;
+                if (t && t.closest && t.closest('button, a, input, textarea, .gallery-dot')) return;
+                var now = Date.now();
+                if (now - lastTouch <= 300) e.preventDefault();
+                lastTouch = now;
+            }, { passive: false });
+            // Block pinch (two-finger) touchmove.
+            document.addEventListener('touchmove', function(e) {
+                if (e.touches && e.touches.length > 1) e.preventDefault();
+            }, { passive: false });
+            // Suppress long-press context menu on images (right-click / save).
+            document.addEventListener('contextmenu', function(e) {
+                if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+            });
+        })();
+
+        /* =======================================================================
+           방명록 (Guestbook)
+           -----------------------------------------------------------------------
+           데이터는 Google Sheets + Apps Script 웹앱에 저장됩니다.
+           아래 GUESTBOOK_API 값에 배포한 웹앱 URL(...../exec)을 붙여넣으세요.
+           설정 방법은 저장소의 guestbook-apps-script.gs 파일 상단 주석을 참고.
+           ======================================================================= */
+        var GUESTBOOK_API = 'https://script.google.com/macros/s/AKfycbwE4mT3UiQo9ABlktNOxHvN7DiLLvNEI1Q9WUMbMVHa6klxo8uRbb7MsrRJr-Ch2xED/exec';
+
+        var MAX_LEN = 100; // 한글 기준 100자
+
+        // 이모지/그림문자 제거 (이미지·이모티콘 방지)
+        function stripEmoji(str) {
+            if (!str) return '';
+            return str
+                .replace(/\p{Extended_Pictographic}/gu, '')                 // emoji / pictographs
+                .replace(/[\u{1F1E6}-\u{1F1FF}]/gu, '')                     // regional indicators (flags)
+                .replace(/[\u200D\uFE0E\uFE0F\u20E3]/gu, '')              // ZWJ, variation selectors, keycap
+                .replace(/[\u2190-\u21FF\u2300-\u27BF\u2B00-\u2BFF]/gu, ''); // arrows, misc symbols
+        }
+
+        // 한글 기준 글자수 (문자 단위)
+        function charCount(str) {
+            return Array.from(str).length;
+        }
+
+        function gbClean(str, limit) {
+            var v = stripEmoji(str).replace(/\r\n/g, '\n');
+            var arr = Array.from(v);
+            if (limit && arr.length > limit) v = arr.slice(0, limit).join('');
+            return v;
+        }
+
+        function gbSetStatus(msg, isError) {
+            var el = document.getElementById('gbStatus');
+            if (!el) return;
+            el.textContent = msg || '';
+            el.style.color = isError ? '#c07a5a' : '#9a8f7a';
+        }
+
+        function gbFormatDate(ts) {
+            if (!ts) return '';
+            var d = new Date(ts);
+            if (isNaN(d.getTime())) return '';
+            function p(n) { return (n < 10 ? '0' : '') + n; }
+            return d.getFullYear() + '.' + p(d.getMonth() + 1) + '.' + p(d.getDate());
+        }
+
+        // Apps Script 호출 (text/plain → CORS preflight 회피)
+        function gbCall(payload) {
+            return fetch(GUESTBOOK_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            }).then(function(r) { return r.json(); });
+        }
+
+        var gbEntries = [];
+        var gbExpanded = false;
+
+        function renderEntries() {
+            var list = document.getElementById('gbList');
+            var ribbonCount = document.getElementById('gbRibbonCount');
+            if (!list) return;
+
+            if (ribbonCount) {
+                ribbonCount.textContent = gbEntries.length ? ' (' + gbEntries.length + ')' : '';
+            }
+
+            list.innerHTML = '';
+            if (!gbEntries.length) {
+                var empty = document.createElement('div');
+                empty.className = 'gb-empty';
+                empty.textContent = GUESTBOOK_API ? '아직 남겨진 축하글이 없습니다.' : '방명록 준비 중입니다.';
+                list.appendChild(empty);
+                return;
+            }
+
+            gbEntries.forEach(function(entry) {
+                var card = document.createElement('div');
+                card.className = 'gb-entry';
+
+                var head = document.createElement('div');
+                head.className = 'gb-entry-head';
+                var name = document.createElement('span');
+                name.className = 'gb-entry-name';
+                name.textContent = entry.name;
+                var date = document.createElement('span');
+                date.className = 'gb-entry-date';
+                date.textContent = gbFormatDate(entry.ts);
+                head.appendChild(name);
+                head.appendChild(date);
+
+                var msg = document.createElement('div');
+                msg.className = 'gb-entry-msg';
+                msg.textContent = entry.message; // textContent → HTML/이미지 삽입 불가
+
+                var actions = document.createElement('div');
+                actions.className = 'gb-entry-actions';
+                var delBtn = document.createElement('button');
+                delBtn.className = 'gb-entry-del';
+                delBtn.type = 'button';
+                delBtn.textContent = '삭제';
+
+                var delBox = document.createElement('div');
+                delBox.className = 'gb-del-box';
+                var delInput = document.createElement('input');
+                delInput.type = 'password';
+                delInput.className = 'gb-del-input';
+                delInput.placeholder = '비밀번호';
+                delInput.maxLength = 20;
+                var delConfirm = document.createElement('button');
+                delConfirm.className = 'gb-del-confirm';
+                delConfirm.type = 'button';
+                delConfirm.textContent = '확인';
+                delBox.appendChild(delInput);
+                delBox.appendChild(delConfirm);
+
+                delBtn.addEventListener('click', function() {
+                    delBox.classList.toggle('open');
+                    if (delBox.classList.contains('open')) delInput.focus();
+                });
+                delConfirm.addEventListener('click', function() {
+                    gbDelete(entry.id, delInput.value, delConfirm);
+                });
+                delInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') { e.preventDefault(); delConfirm.click(); }
+                });
+
+                actions.appendChild(delBtn);
+                card.appendChild(head);
+                card.appendChild(msg);
+                card.appendChild(actions);
+                card.appendChild(delBox);
+                list.appendChild(card);
+            });
+        }
+
+        function gbDelete(id, password, btn) {
+            if (!password) { gbSetStatus('비밀번호를 입력해주세요.', true); return; }
+            if (!GUESTBOOK_API) { gbSetStatus('방명록이 아직 설정되지 않았습니다.', true); return; }
+            btn.disabled = true;
+            gbCall({ action: 'delete', id: id, password: password }).then(function(res) {
+                btn.disabled = false;
+                if (res && res.ok) {
+                    gbSetStatus('삭제되었습니다.');
+                    loadEntries();
+                } else {
+                    gbSetStatus((res && res.error) || '비밀번호가 일치하지 않습니다.', true);
+                }
+            }).catch(function() {
+                btn.disabled = false;
+                gbSetStatus('삭제 중 오류가 발생했습니다.', true);
+            });
+        }
+
+        function loadEntries() {
+            if (!GUESTBOOK_API) { renderEntries(); return; }
+            fetch(GUESTBOOK_API + '?action=list')
+                .then(function(r) { return r.json(); })
+                .then(function(res) {
+                    gbEntries = (res && res.entries) ? res.entries : [];
+                    renderEntries();
+                })
+                .catch(function() {
+                    gbSetStatus('방명록을 불러오지 못했습니다.', true);
+                });
+        }
+
+        function initGuestbook() {
+            var form = document.getElementById('guestbookForm');
+            var nameEl = document.getElementById('gbName');
+            var pwEl = document.getElementById('gbPassword');
+            var msgEl = document.getElementById('gbMessage');
+            var countEl = document.getElementById('gbCount');
+            var counterEl = document.getElementById('gbCounter');
+            var submitEl = document.getElementById('gbSubmit');
+            var ribbon = document.getElementById('gbRibbon');
+            var list = document.getElementById('gbList');
+            if (!form) return;
+
+            // 이름: 이모지 제거
+            nameEl.addEventListener('input', function() {
+                var cleaned = gbClean(this.value, 20).replace(/\n/g, ' ');
+                if (cleaned !== this.value) this.value = cleaned;
+            });
+
+            // 메시지: 이모지 제거 + 100자 제한 + 카운터
+            function updateCount() {
+                var cleaned = gbClean(msgEl.value, MAX_LEN);
+                if (cleaned !== msgEl.value) msgEl.value = cleaned;
+                var n = charCount(msgEl.value);
+                countEl.textContent = n;
+                counterEl.classList.toggle('over', n >= MAX_LEN);
+            }
+            msgEl.addEventListener('input', updateCount);
+            // 붙여넣기 후에도 정리
+            msgEl.addEventListener('paste', function() { setTimeout(updateCount, 0); });
+            nameEl.addEventListener('paste', function() {
+                setTimeout(function() {
+                    nameEl.value = gbClean(nameEl.value, 20).replace(/\n/g, ' ');
+                }, 0);
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var name = gbClean(nameEl.value, 20).replace(/\n/g, ' ').trim();
+                var password = pwEl.value;
+                var message = gbClean(msgEl.value, MAX_LEN).trim();
+
+                if (!name) { gbSetStatus('이름을 입력해주세요.', true); return; }
+                if (!password) { gbSetStatus('비밀번호를 입력해주세요.', true); return; }
+                if (!message) { gbSetStatus('메시지를 입력해주세요.', true); return; }
+                if (!GUESTBOOK_API) { gbSetStatus('방명록이 아직 설정되지 않았습니다.', true); return; }
+
+                submitEl.disabled = true;
+                gbSetStatus('등록 중...');
+                gbCall({ action: 'add', name: name, password: password, message: message })
+                    .then(function(res) {
+                        submitEl.disabled = false;
+                        if (res && res.ok) {
+                            pwEl.value = '';
+                            msgEl.value = '';
+                            updateCount();
+                            gbSetStatus('축하글이 등록되었습니다. 감사합니다!');
+                            if (!gbExpanded) toggleRibbon(true);
+                            loadEntries();
+                        } else {
+                            gbSetStatus((res && res.error) || '등록에 실패했습니다.', true);
+                        }
+                    })
+                    .catch(function() {
+                        submitEl.disabled = false;
+                        gbSetStatus('등록 중 오류가 발생했습니다.', true);
+                    });
+            });
+
+            function toggleRibbon(force) {
+                gbExpanded = (typeof force === 'boolean') ? force : !gbExpanded;
+                list.classList.toggle('open', gbExpanded);
+                ribbon.setAttribute('aria-expanded', gbExpanded ? 'true' : 'false');
+                ribbon.querySelector('.gb-ribbon-label').textContent =
+                    gbExpanded ? '방명록 접기' : '방명록 펼쳐보기';
+            }
+            ribbon.addEventListener('click', function() { toggleRibbon(); });
+
+            loadEntries();
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             handleScrollAnimation();
@@ -846,6 +1392,7 @@
                 var available = results.filter(function(r) { return r !== null; });
                 initGallery(available);
             });
+            initGuestbook();
         });
     </script>
 </body>
