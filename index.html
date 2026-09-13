@@ -981,10 +981,11 @@
             });
         }
 
-        // Toggle account details
+        // Toggle account details (only one side open at a time)
         function toggleAccount(type) {
-            var el = document.getElementById(type + '-account');
-            el.classList.toggle('open');
+            var other = type === 'groom' ? 'bride' : 'groom';
+            document.getElementById(other + '-account').classList.remove('open');
+            document.getElementById(type + '-account').classList.toggle('open');
         }
 
         // Copy to clipboard
